@@ -1,0 +1,219 @@
+import pygame
+
+def checkmouseclick():
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            return True
+
+def drawx(p1):
+    if p1 == 1:
+        pygame.draw.line(screen, white, (180,80), (270,170), 5)
+        pygame.draw.line(screen, white, (270,80), (180,170), 5)
+    if p1 == 2:
+        pygame.draw.line(screen, white, (330,80), (464,170), 5)
+        pygame.draw.line(screen, white, (464,80), (330,170), 5)
+    if p1 == 3:
+        pygame.draw.line(screen, white, (524,80), (620,170), 5)
+        pygame.draw.line(screen, white, (620,80), (524,170), 5)
+    if p1 == 4:
+        pygame.draw.line(screen, white, (180,230), (270,366), 5)
+        pygame.draw.line(screen, white, (270,230), (180,366), 5)
+    if p1 == 5:
+        pygame.draw.line(screen, white, (330,230), (464,366), 5)
+        pygame.draw.line(screen, white, (464,230), (330,366), 5)
+    if p1 == 6:
+        pygame.draw.line(screen, white, (524,230), (620,366), 5)
+        pygame.draw.line(screen, white, (620,230), (524,366), 5)
+    if p1 == 7:
+        pygame.draw.line(screen, white, (180,426), (270,519), 5)
+        pygame.draw.line(screen, white, (270,426), (180,519), 5)
+    if p1 == 8:
+        pygame.draw.line(screen, white, (330,426), (464,519), 5)
+        pygame.draw.line(screen, white, (464,426), (330,519), 5)
+    if p1 == 9:
+        pygame.draw.line(screen, white, (524,426), (620,519), 5)
+        pygame.draw.line(screen, white, (620,426), (524,519), 5)
+
+def drawo(p2):
+    if p2 == 1:
+        pygame.draw.circle(screen, white, (215, 128), 67, 5)
+    if p2 == 2:
+        pygame.draw.circle(screen, white, (391, 122), 67, 5)
+    if p2 == 3:
+        pygame.draw.circle(screen, white, (571, 117), 67, 5)
+    if p2 == 4:
+        pygame.draw.circle(screen, white, (219, 291), 67, 5)
+    if p2 == 5:
+        pygame.draw.circle(screen, white, (391, 291), 67, 5)
+    if p2 == 6:
+        pygame.draw.circle(screen, white, (571, 291), 67, 5)
+    if p2 == 7:
+        pygame.draw.circle(screen, white, (215, 473), 67, 5)
+    if p2 == 8:
+        pygame.draw.circle(screen, white, (391, 473), 67, 5)
+    if p2 == 9:
+        pygame.draw.circle(screen, white, (571, 473), 67, 5)
+
+def table():
+    pygame.draw.line(screen, (255, 255, 255), (150, 194), (650, 194), 9)
+    pygame.draw.line(screen, (255, 255, 255), (150, 388), (650, 388), 9)
+    pygame.draw.line(screen, (255, 255, 255), (294, 50), (294, 550), 9)
+    pygame.draw.line(screen, (255, 255, 255), (488, 50), (488, 550), 9)
+
+def choose(mousex,mousey):
+    if mousex <=285 and mousex>=145 and mousey<=188 and mousey>=60:
+        x = 1
+    elif mousex <=482 and mousex>=300 and mousey<=188 and mousey>=50:
+        x = 2
+    elif mousex <=650 and mousex>=494 and mousey<=188 and mousey>=50:
+        x = 3
+    elif mousex <=287 and mousex>=148 and mousey<=383 and mousey>=202:
+        x = 4
+    elif mousex <=481 and mousex>=300 and mousey<=383 and mousey>=202:
+        x = 5
+    elif mousex <=650 and mousex>=494 and mousey<=381 and mousey>=200:
+        x = 6
+    elif mousex <=287 and mousex>=154 and mousey<=553 and mousey>=397:
+        x = 7
+    elif mousex <=482 and mousex>=300 and mousey<=548 and mousey>=393:
+        x = 8
+    elif mousex <=650 and mousex>=494 and mousey<=549 and mousey>=396:
+        x = 9
+
+    return x
+
+def choosex(p1):
+    for n, i in enumerate(tableraw):
+        if p1 == n+1:
+            if i == "o" or i == "x":
+                return False
+                #adica nu e bine
+            else:
+                tableraw[n] = "x"
+    return True
+
+def chooseo(p2):
+    for n, i in enumerate(tableraw):
+        if p2 == n+1:
+            if i == "x" or i == "o":
+                return False
+            else:
+                tableraw[n] = "o"
+    return True
+
+def wincheckx():
+    if tableraw[0] == "x" and tableraw[1] == "x" and tableraw[2]=="x":
+        return True
+    if tableraw[3] == "x" and tableraw[4] == "x" and tableraw[5]=="x":
+        return True
+    if tableraw[6] == "x" and tableraw[7] == "x" and tableraw[8]=="x":
+        return True
+    if tableraw[0] == "x" and tableraw[3] == "x" and tableraw[6]=="x":
+        return True
+    if tableraw[1] == "x" and tableraw[4] == "x" and tableraw[7]=="x":
+        return True
+    if tableraw[2] == "x" and tableraw[5] == "x" and tableraw[8]=="x":
+        return True
+    if tableraw[0] == "x" and tableraw[4] == "x" and tableraw[8]=="x":
+        return True
+    if tableraw[2] == "x" and tableraw[4] == "x" and tableraw[6]=="x":
+        return True
+    return False
+
+def winchecko():
+    if tableraw[0] == "o" and tableraw[1] == "o" and tableraw[2]=="o":
+        return True
+    if tableraw[3] == "o" and tableraw[4] == "o" and tableraw[5]=="o":
+        return True
+    if tableraw[6] == "o" and tableraw[7] == "o" and tableraw[8]=="o":
+        return True
+    if tableraw[0] == "o" and tableraw[3] == "o" and tableraw[6]=="o":
+        return True
+    if tableraw[1] == "o" and tableraw[4] == "o" and tableraw[7]=="o":
+        return True
+    if tableraw[2] == "o" and tableraw[5] == "o" and tableraw[8]=="o":
+        return True
+    if tableraw[0] == "o" and tableraw[4] == "o" and tableraw[8]=="o":
+        return True
+    if tableraw[2] == "o" and tableraw[4] == "o" and tableraw[6]=="o":
+        return True
+    return False
+
+def tiecheck():
+    if tableraw[0] != "-" and tableraw[1] != "-" and tableraw[2] != "-" and tableraw[3] != "-" and tableraw[4] != "-" and tableraw[5] != "-" and tableraw[6] != "-" and tableraw[7] != "-" and tableraw[8] != "-":
+        return True
+    return False
+
+pygame.init()
+screen = pygame.display.set_mode((800,600))
+screen.fill((0, 0, 0))
+pygame.display.set_caption("Tic Tac Toe")
+pygame.display.set_icon(pygame.image.load('icon.png'))
+white = (255,255,255)
+tableraw = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+myfont = pygame.font.SysFont('Comic Sans', 30, False)
+
+
+#THIS IS WHERE THE GAME BEGINS!!
+running = True
+while running:
+    table()
+    pygame.display.update()
+    playerone = True
+    playertwo = True
+#PLAYER_ONE
+    while playerone:
+        if checkmouseclick():
+            p1mousex, p1mousey = pygame.mouse.get_pos()
+            p1 = choose(p1mousex, p1mousey)
+            print("MOUSE1 = ", p1)
+            if choosex(p1):
+                drawx(p1)
+                pygame.display.update()
+                playerone = False
+                textsurface = myfont.render('Choose another box!', False, (0, 0, 0))
+                screen.blit(textsurface, (294, 15))
+                pygame.display.update()
+            else:
+                print("Choose another box!")
+                textsurface = myfont.render('Choose another box!', False, (255, 0, 255))
+                screen.blit(textsurface, (294, 15))
+                pygame.display.update()
+    if wincheckx():
+        print("Player one has won!")
+        textsurface = myfont.render('Player one has won!', False, (0, 0, 255))
+        screen.blit(textsurface, (294, 15))
+        pygame.display.update()
+        playertwo = False
+
+    if tiecheck():
+        print("It's a tie")
+        textsurface = myfont.render("It's a tie!", False, (0, 255, 0))
+        screen.blit(textsurface, (343, 15))
+        pygame.display.update()
+        playertwo = False
+
+    pygame.display.update()
+#PLAYER_TWO
+    while playertwo:
+        if checkmouseclick():
+            p2mousex, p2mousey = pygame.mouse.get_pos()
+            p2 = choose(p2mousex, p2mousey)
+            print("MOUSE2 = ", p2)
+            if chooseo(p2):
+                drawo(p2)
+                pygame.display.update()
+                playertwo = False
+                textsurface = myfont.render('Choose another box!', False, (0, 0, 0))
+                screen.blit(textsurface, (294, 15))
+                pygame.display.update()
+            else:
+                print("Choose another box!")
+                textsurface = myfont.render('Choose another box!', False, (255, 0, 255))
+                screen.blit(textsurface, (294, 15))
+                pygame.display.update()
+    if winchecko():
+        print("Player two has won!")
+        textsurface = myfont.render('Player two has won!', False, (255, 0, 0))
+        screen.blit(textsurface, (294, 15))
+        pygame.display.update()
